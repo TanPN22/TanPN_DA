@@ -1,0 +1,54 @@
+-- Existing sdkconfig 'D:/DH/Do an/DA2/SmartPlug_V0/sdkconfig' renamed to 'D:/DH/Do an/DA2/SmartPlug_V0/sdkconfig.old'.
+-- Found Git: D:/DH/ESP32Tool/tools/idf-git/2.39.2/cmd/git.exe (found version "2.39.2.windows.1") 
+-- The C compiler identification is GNU 13.2.0
+-- The CXX compiler identification is GNU 13.2.0
+-- The ASM compiler identification is GNU
+-- Found assembler: D:/DH/ESP32Tool/tools/xtensa-esp-elf/esp-13.2.0_20230928/xtensa-esp-elf/bin/xtensa-esp32-elf-gcc.exe
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: D:/DH/ESP32Tool/tools/xtensa-esp-elf/esp-13.2.0_20230928/xtensa-esp-elf/bin/xtensa-esp32-elf-gcc.exe - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: D:/DH/ESP32Tool/tools/xtensa-esp-elf/esp-13.2.0_20230928/xtensa-esp-elf/bin/xtensa-esp32-elf-g++.exe - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- git rev-parse returned 'fatal: not a git repository (or any of the parent directories): .git'
+-- Could not use 'git describe' to determine PROJECT_VER.
+-- Building ESP-IDF components for target esp32
+Target changed from esp32s3 to esp32, solving dependencies.
+Using component placed at D:\DH\Lumi\ESPRESSIF\Espressif\v5.2.1\esp-idf\examples\common_components\protocol_examples_common for dependency protocol_examples_common(*), specified in D:/DH/Do an/DA2/SmartPlug_V0/main\idf_component.yml
+.Updating lock file at D:\DH\Do an\DA2\SmartPlug_V0\dependencies.lock
+Processing 2 dependencies:
+[1/2] protocol_examples_common (*)
+[2/2] idf (5.2.1)
+-- Project sdkconfig file D:/DH/Do an/DA2/SmartPlug_V0/sdkconfig
+Loading defaults file D:/DH/Do an/DA2/SmartPlug_V0/sdkconfig.defaults...
+-- Compiler supported targets: xtensa-esp-elf
+-- Looking for sys/types.h
+-- Looking for sys/types.h - found
+-- Looking for stdint.h
+-- Looking for stdint.h - found
+-- Looking for stddef.h
+-- Looking for stddef.h - found
+-- Check size of time_t
+-- Check size of time_t - done
+-- Found Python3: d:/DH/ESP32Tool/python_env/idf5.2_py3.11_env/Scripts/python.exe (found version "3.11.2") found components: Interpreter 
+-- Performing Test C_COMPILER_SUPPORTS_WFORMAT_SIGNEDNESS
+-- Performing Test C_COMPILER_SUPPORTS_WFORMAT_SIGNEDNESS - Success
+-- App "SmartPlug_V0" version: 1
+-- Adding linker script D:/DH/Do an/DA2/SmartPlug_V0/build/esp-idf/esp_system/ld/memory.ld
+-- Adding linker script D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/esp_system/ld/esp32/sections.ld.in
+-- Adding linker script D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/esp_rom/esp32/ld/esp32.rom.ld
+-- Adding linker script D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/esp_rom/esp32/ld/esp32.rom.api.ld
+-- Adding linker script D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/esp_rom/esp32/ld/esp32.rom.libgcc.ld
+-- Adding linker script D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/esp_rom/esp32/ld/esp32.rom.newlib-data.ld
+-- Adding linker script D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/esp_rom/esp32/ld/esp32.rom.syscalls.ld
+-- Adding linker script D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/esp_rom/esp32/ld/esp32.rom.newlib-funcs.ld
+-- Adding linker script D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/soc/esp32/ld/esp32.peripherals.ld
+-- Components: app_trace app_update bootloader bootloader_support bt cmock console cxx driver efuse esp-tls esp_adc esp_app_format esp_bootloader_format esp_coex esp_common esp_eth esp_event esp_gdbstub esp_hid esp_http_client esp_http_server esp_https_ota esp_https_server esp_hw_support esp_lcd esp_local_ctrl esp_mm esp_netif esp_netif_stack esp_partition esp_phy esp_pm esp_psram esp_ringbuf esp_rom esp_system esp_timer esp_wifi espcoredump esptool_py fatfs freertos functionComponent hal heap http_parser idf_test ieee802154 json log lwip main mbedtls mqtt newlib nvs_flash nvs_sec_provider openthread partition_table perfmon protobuf-c protocol_examples_common protocomm pthread sdmmc soc spi_flash spiffs tcp_transport ulp unity usb vfs wear_levelling wifi_provisioning wpa_supplicant xtensa
+-- Component paths: D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/app_trace D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/app_update D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/bootloader D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/bootloader_support D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/bt D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/cmock D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/console D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/cxx D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/driver D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/efuse D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/esp-tls D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/esp_adc D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/esp_app_format D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/esp_bootloader_format D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/esp_coex D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/esp_common D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/esp_eth D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/esp_event D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/esp_gdbstub D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/esp_hid D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/esp_http_client D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/esp_http_server D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/esp_https_ota D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/esp_https_server D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/esp_hw_support D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/esp_lcd D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/esp_local_ctrl D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/esp_mm D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/esp_netif D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/esp_netif_stack D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/esp_partition D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/esp_phy D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/esp_pm D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/esp_psram D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/esp_ringbuf D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/esp_rom D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/esp_system D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/esp_timer D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/esp_wifi D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/espcoredump D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/esptool_py D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/fatfs D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/freertos D:/DH/Do an/DA2/SmartPlug_V0/functionComponent D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/hal D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/heap D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/http_parser D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/idf_test D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/ieee802154 D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/json D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/log D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/lwip D:/DH/Do an/DA2/SmartPlug_V0/main D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/mbedtls D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/mqtt D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/newlib D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/nvs_flash D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/nvs_sec_provider D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/openthread D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/partition_table D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/perfmon D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/protobuf-c D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/examples/common_components/protocol_examples_common D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/protocomm D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/pthread D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/sdmmc D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/soc D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/spi_flash D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/spiffs D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/tcp_transport D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/ulp D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/unity D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/usb D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/vfs D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/wear_levelling D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/wifi_provisioning D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/wpa_supplicant D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/xtensa
+-- Configuring done
+-- Generating done
+-- Build files have been written to: D:/DH/Do an/DA2/SmartPlug_V0/build
