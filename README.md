@@ -15,7 +15,7 @@ Các tính năng:
 - Điều khiển từ xa qua Web ThingsBoard Cloud và App ThingsBoard Cloud
 
 - SmartConfig WiFi -> Có thể config WiFi bằng điện thoại
-Yêu cầu: App EspTouch. 
+Yêu cầu: App EspTouch.
 Bước 1: Tải app EspTouch -> Chọn EspTouch
 Bước 2: Kết nối với mạng WiFi muốn thêm,
 Bước 3: Nhập mật khẩu mạng.
