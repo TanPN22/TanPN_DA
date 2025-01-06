@@ -1328,3 +1328,33 @@
 11979	12060	0	D:/DH/Do an/DA2/SmartPlug_V0/build/esp-idf/esptool_py/CMakeFiles/app_check_size	6cebb936c2f15b8a
 541	5380142	0	CMakeFiles/confserver	e26ea36be0548983
 541	5380142	0	D:/DH/Do an/DA2/SmartPlug_V0/build/CMakeFiles/confserver	e26ea36be0548983
+466	909	7540560871888102	bootloader-prefix/src/bootloader-stamp/bootloader-build	94168b158a3cc69
+466	909	7540560871888102	bootloader/bootloader.elf	94168b158a3cc69
+466	909	7540560871888102	bootloader/bootloader.bin	94168b158a3cc69
+466	909	7540560871888102	bootloader/bootloader.map	94168b158a3cc69
+466	909	7540560871888102	D:/DH/Do an/DA2/SmartPlug_V0/build/bootloader-prefix/src/bootloader-stamp/bootloader-build	94168b158a3cc69
+466	909	7540560871888102	D:/DH/Do an/DA2/SmartPlug_V0/build/bootloader/bootloader.elf	94168b158a3cc69
+466	909	7540560871888102	D:/DH/Do an/DA2/SmartPlug_V0/build/bootloader/bootloader.bin	94168b158a3cc69
+466	909	7540560871888102	D:/DH/Do an/DA2/SmartPlug_V0/build/bootloader/bootloader.map	94168b158a3cc69
+472	2002	7548227822406539	esp-idf/main/CMakeFiles/__idf_main.dir/smartconfig_main.c.obj	f8c2aa7228ca9e3
+481	2003	7548227822374131	esp-idf/main/CMakeFiles/__idf_main.dir/send_data.c.obj	33359f461c518029
+485	2006	7548227822384137	esp-idf/main/CMakeFiles/__idf_main.dir/app_main.c.obj	b6cdbc9dad53cb07
+477	2079	7548227822314138	esp-idf/main/CMakeFiles/__idf_main.dir/gpio_config.c.obj	82d48469961936c0
+2079	2500	7548227827945486	esp-idf/main/libmain.a	885765d49997ba37
+2500	11628	7548227827945486	esp-idf/esp_system/ld/sections.ld	f7a60cd05d8882e0
+2500	11628	7548227827945486	D:/DH/Do an/DA2/SmartPlug_V0/build/esp-idf/esp_system/ld/sections.ld	f7a60cd05d8882e0
+11629	17263	7548227975192221	SmartPlug_V0.elf	b152b255afab0907
+17264	17710	7548227975192221	.bin_timestamp	327a6d31c6cb7c77
+17264	17710	7548227975192221	D:/DH/Do an/DA2/SmartPlug_V0/build/.bin_timestamp	327a6d31c6cb7c77
+17710	17822	0	esp-idf/esptool_py/CMakeFiles/app_check_size	6cebb936c2f15b8a
+17710	17822	0	D:/DH/Do an/DA2/SmartPlug_V0/build/esp-idf/esptool_py/CMakeFiles/app_check_size	6cebb936c2f15b8a
+113	206	0	esp-idf/esptool_py/CMakeFiles/app_check_size	6cebb936c2f15b8a
+113	206	0	D:/DH/Do an/DA2/SmartPlug_V0/build/esp-idf/esptool_py/CMakeFiles/app_check_size	6cebb936c2f15b8a
+107	252	7540560871888102	bootloader-prefix/src/bootloader-stamp/bootloader-build	94168b158a3cc69
+107	252	7540560871888102	bootloader/bootloader.elf	94168b158a3cc69
+107	252	7540560871888102	bootloader/bootloader.bin	94168b158a3cc69
+107	252	7540560871888102	bootloader/bootloader.map	94168b158a3cc69
+107	252	7540560871888102	D:/DH/Do an/DA2/SmartPlug_V0/build/bootloader-prefix/src/bootloader-stamp/bootloader-build	94168b158a3cc69
+107	252	7540560871888102	D:/DH/Do an/DA2/SmartPlug_V0/build/bootloader/bootloader.elf	94168b158a3cc69
+107	252	7540560871888102	D:/DH/Do an/DA2/SmartPlug_V0/build/bootloader/bootloader.bin	94168b158a3cc69
+107	252	7540560871888102	D:/DH/Do an/DA2/SmartPlug_V0/build/bootloader/bootloader.map	94168b158a3cc69
