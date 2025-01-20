@@ -31,12 +31,15 @@ char password[65] = { 0 };
 
 // Clock frequency and calibration coeficient
 const float IRMS_COEF = 1.0/3680.30;
-const float VRMS_COEF = 1.0/105.696;
+const float VRMS_COEF = 1.0/105.696/73.6;
 
 bool socketStatus;
 bool isWifihave = 0;
 
-SensorData data2Send[DATA_SIZE];
+uint8_t modeADE7753 = 1;
+uint8_t modeCurrent = 1;
+
+float data2Send[DATA_SIZE];
 
 bool ade7753Flag = 0;
 bool flagSend = 0;
@@ -147,7 +150,7 @@ static void mqtt5_app_start(void)
         .broker.address.uri = "mqtts://mqtt.thingsboard.cloud:8883",
         .session.protocol_ver = MQTT_PROTOCOL_V_5,
         .network.disable_auto_reconnect = true,
-        .credentials.username = "hqp7WA2TAYrBaawzch7d",
+        .credentials.username = "qEdog28d82SYWLWurogP",
         .credentials.authentication.password = "",
         .session.last_will.topic = "/topic/will",
         .session.last_will.msg = "i will leave",
@@ -174,66 +177,112 @@ static void mqtt5_app_start(void)
 
 void ade7753_read_task(void *arg) {
 #if SPI_TURN_ON
-    #if ADE_WAVEFORM
     ADE7753_begin();
     
-    ADE7753_setInterrupt(ADE7753_WSMP);
-
-    ADE7753_setWaveSelect(ADE7753_WAV_CH1);//Set channel 2
-    ADE7753_setDataRate(ADE7753_DR_1_1024); 
-    #else
-    ADE7753_begin();
-
-    #endif
-
+    // Cấu hình ban đầu
     ADE7753_setCh1Gain(ADE7753_GAIN_4);
     ADE7753_setCh2Gain(ADE7753_GAIN_2);  
-
     ADE7753_setCh1FullScale(ADE7753_FS_0_5V);
 
-    const TickType_t delay_1s = pdMS_TO_TICKS(1000);  
-    TickType_t last_mqtt_time = xTaskGetTickCount();
-
     while (1) {
-        //Do toc do doc nhanh nen dung ngat khong hop li
-    // if (ade7753Flag == 1)
-    // {
-    //     ade7753Flag = 0;
+    
+    // Kiểm tra nếu modeADE7753 thay đổi
+    if (modeADE7753 != modeCurrent) {
+        if (modeADE7753 == 0)modeADE7753 = modeCurrent;
+        modeCurrent = modeADE7753;
 
-        #if ADE_WAVEFORM
-        if (ADE7753_status() & ADE7753_WSMP) {
-            // Show waveform value in serial plotter
-            int32_t value = ADE7753_readWaveForm();
-            ESP_LOGI(TAG,"%ld", value);
+        switch (modeCurrent) {
+            case 1: // Đọc VRMS
+                ESP_LOGI(TAG, "Switching to mode 0: Read VRMS & IRMS");
+                ADE7753_reset();
+                ADE7753_setCh1Gain(ADE7753_GAIN_4);
+                ADE7753_setCh2Gain(ADE7753_GAIN_2);  
+                ADE7753_setCh1FullScale(ADE7753_FS_0_5V);
+                break;
+
+            case 2: // Đọc I waveform
+                ESP_LOGI(TAG, "Switching to mode 2: Read I waveform");
+                ADE7753_reset();
+                ADE7753_setCh1Gain(ADE7753_GAIN_4);
+                ADE7753_setCh2Gain(ADE7753_GAIN_2);  
+                ADE7753_setCh1FullScale(ADE7753_FS_0_5V);
+                ADE7753_setInterrupt(ADE7753_WSMP);
+                ADE7753_setWaveSelect(ADE7753_WAV_CH1); // Set channel 1
+                ADE7753_setDataRate(ADE7753_DR_1_1024); 
+                break;
+
+            case 3: // Đọc V waveform
+                ESP_LOGI(TAG, "Switching to mode 3: Read V waveform");
+                ADE7753_reset();
+                ADE7753_setCh1Gain(ADE7753_GAIN_4);
+                ADE7753_setCh2Gain(ADE7753_GAIN_2);  
+                ADE7753_setCh1FullScale(ADE7753_FS_0_5V);
+                ADE7753_setInterrupt(ADE7753_WSMP);
+                ADE7753_setWaveSelect(ADE7753_WAV_CH2); // Set channel 2
+                ADE7753_setDataRate(ADE7753_DR_1_1024); 
+                break;
+
+            default:
+                ESP_LOGW(TAG, "Invalid mode selected: %d", modeCurrent);
+                break;
         }
-        #else
-        IRMS = (float)IRMS_COEF * ADE7753_readCurrentRMS();
-        VRMS = VRMS_COEF * ADE7753_readVoltageRMS();
+    }
 
-        //Doan nay la gop data thanh 1 mang roi moi gui
-        //Ham gui data MQTT
-        // data2Send[dataCount].voltage = VRMS;
-        // data2Send[dataCount].current = IRMS;
-        // dataCount ++;
+    // Xử lý theo chế độ hiện tại
+    switch (modeCurrent) {
+        case 1: // Đọc VRMS
+            VRMS = VRMS_COEF * ADE7753_readVoltageRMS();
+            vTaskDelay(pdMS_TO_TICKS(10));
+            VRMS = VRMS_COEF * ADE7753_readVoltageRMS();
+            vTaskDelay(pdMS_TO_TICKS(10));
+            IRMS = IRMS_COEF * ADE7753_readCurrentRMS();
+            vTaskDelay(pdMS_TO_TICKS(10));
+            IRMS = IRMS_COEF * ADE7753_readCurrentRMS();
+            // ESP_LOGI(TAG, "VRMS: %.2f V", VRMS);
 
-        // if (dataCount == DATA_SIZE){
-        //     dataCount = 0;
-        //     send_sensor_data_via_mqtt();
-        // }
+            vTaskDelay(pdMS_TO_TICKS(400));
+            send_telemetry_data();
+            vTaskDelay(pdMS_TO_TICKS(400));
+            break;
 
-        // ESP_LOGI(TAG,"IRMS: %.2f A,  VRMS: %.2f V", IRMS, VRMS);
+        case 2: // Đọc I waveform
+            if (ADE7753_status() && ADE7753_WSMP) {
+                IRMS = ADE7753_readWaveForm();
+                // ESP_LOGI(TAG, "I waveform: %.2f", IRMS);
+            }
 
-        #endif
+            data2Send[dataCount] = IRMS;
+            dataCount ++;
 
-        if ((xTaskGetTickCount() - last_mqtt_time) >= delay_1s) {
-            send_telemetry_data();  // Gọi hàm gửi dữ liệu
-            last_mqtt_time = xTaskGetTickCount();  // Cập nhật thời gian gửi
-        }
-    // }
-        //ESP_ROM... doc tan so 10kHz.
-        // esp_rom_delay_us(100);
+            if (dataCount >= DATA_SIZE){
+                dataCount = 0;
+                send_sensor_data_via_mqtt();
+            }
 
-        vTaskDelay(pdMS_TO_TICKS(100));
+            esp_rom_delay_us(100);
+            break;
+
+        case 3: // Đọc V waveform
+            if (ADE7753_status() && ADE7753_WSMP) {
+                VRMS = ADE7753_readWaveForm()/ 34.622;
+                // ESP_LOGI(TAG, "V waveform: %.2f", VRMS/ 34.622);
+            }
+
+            data2Send[dataCount] = VRMS;
+            dataCount ++;
+
+            if (dataCount >= DATA_SIZE){
+                dataCount = 0;
+                send_sensor_data_via_mqtt();
+            }
+
+            esp_rom_delay_us(100);
+            break;
+
+        default:
+            ESP_LOGW(TAG, "Unhandled mode: %d", modeCurrent);
+            break;
+    }
     }
 #endif // USE_SPI
 }
@@ -247,7 +296,7 @@ void app_main(void)
     ESP_ERROR_CHECK(esp_netif_init());
     ESP_ERROR_CHECK(esp_event_loop_create_default());
 
-#ifdef SMART_CONFIG
+#if SMART_CONFIG
     bool ssid_exists = read_from_nvs("ssid", ssid, sizeof(ssid));
     bool uuid_exists = read_from_nvs("uuid", password, sizeof(password));
 
@@ -258,20 +307,7 @@ void app_main(void)
     if (ssid_exists && uuid_exists){
         ESP_LOGI(TAG, "WiFi is already");
         isWifihave = 1;
-        
-        wifi_config_t wifi_config = {
-            .sta = {
-                .ssid = "",
-                .password = "",
-            },
-        };
-
-        strncpy((char *)wifi_config.sta.ssid, ssid, sizeof(wifi_config.sta.ssid));
-        strncpy((char *)wifi_config.sta.password, password, sizeof(wifi_config.sta.password));
-
-        esp_wifi_set_mode(WIFI_MODE_STA);
-        esp_wifi_set_config(ESP_IF_WIFI_STA, &wifi_config);
-        esp_wifi_start();
+        wifi_init_sta(ssid, password);
     }else {
         ESP_LOGI(TAG, "No WiFI, SmartConfig");
         isWifihave = 0;

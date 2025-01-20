@@ -374,6 +374,11 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
+  include("D:/DH/Do an/DA2/SmartPlug_V0/build/esp-idf/led_strip/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
   include("D:/DH/Do an/DA2/SmartPlug_V0/build/esp-idf/mqtt/cmake_install.cmake")
 endif()
 

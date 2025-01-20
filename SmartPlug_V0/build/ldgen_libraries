@@ -56,6 +56,7 @@ D:/DH/Do an/DA2/SmartPlug_V0/build/esp-idf/wear_levelling/libwear_levelling.a
 D:/DH/Do an/DA2/SmartPlug_V0/build/esp-idf/sdmmc/libsdmmc.a
 D:/DH/Do an/DA2/SmartPlug_V0/build/esp-idf/fatfs/libfatfs.a
 D:/DH/Do an/DA2/SmartPlug_V0/build/esp-idf/json/libjson.a
+D:/DH/Do an/DA2/SmartPlug_V0/build/esp-idf/led_strip/libled_strip.a
 D:/DH/Do an/DA2/SmartPlug_V0/build/esp-idf/mqtt/libmqtt.a
 D:/DH/Do an/DA2/SmartPlug_V0/build/esp-idf/nvs_sec_provider/libnvs_sec_provider.a
 D:/DH/Do an/DA2/SmartPlug_V0/build/esp-idf/perfmon/libperfmon.a

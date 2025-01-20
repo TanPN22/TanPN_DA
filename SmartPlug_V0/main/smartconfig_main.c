@@ -78,8 +78,8 @@ static void event_handler(void* arg, esp_event_base_t event_base,
 
         isWifihave = 1;
 
-        // save_to_nvs("ssid", ssid);
-        // save_to_nvs("uuid", password);
+        save_to_nvs("ssid",  (const char *)ssid);
+        save_to_nvs("uuid",  (const char *)password);
 
         vTaskDelay(pdMS_TO_TICKS(1000));
     } else if (event_base == SC_EVENT && event_id == SC_EVENT_SEND_ACK_DONE) {
@@ -140,4 +140,34 @@ bool read_from_nvs(const char *key, char *value, size_t length) {
     err = nvs_get_str(nvs_handle, key, value, &length);
     nvs_close(nvs_handle);
     return err == ESP_OK;
+}
+
+void clear_wifi_from_nvs() {
+    nvs_handle_t nvs_handle;
+    esp_err_t err = nvs_open(NVS_NAMESPACE, NVS_READWRITE, &nvs_handle);
+    if (err != ESP_OK) {
+        ESP_LOGE(TAG, "Failed to open NVS namespace. Error: %s", esp_err_to_name(err));
+        return;
+    }
+
+    // Xóa key "ssid" và "password"
+    if (nvs_erase_key(nvs_handle, "ssid") == ESP_OK) {
+        ESP_LOGI(TAG, "SSID key erased successfully.");
+    } else {
+        ESP_LOGW(TAG, "Failed to erase SSID key.");
+    }
+
+    if (nvs_erase_key(nvs_handle, "password") == ESP_OK) {
+        ESP_LOGI(TAG, "Password key erased successfully.");
+    } else {
+        ESP_LOGW(TAG, "Failed to erase Password key.");
+    }
+
+    // Lưu thay đổi
+    nvs_commit(nvs_handle);
+
+    // Đóng NVS handle
+    nvs_close(nvs_handle);
+
+    ESP_LOGI(TAG, "Wi-Fi credentials cleared from NVS.");
 }

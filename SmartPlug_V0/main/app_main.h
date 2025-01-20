@@ -41,20 +41,17 @@
 #define SPI_TURN_ON 1
 #define FAKE_DATA 0
 #define ADE_WAVEFORM 0
-#define DATA_SIZE 10
+#define DATA_SIZE 1000
 
 extern bool socketStatus;
 extern bool isWifihave;
 
+extern uint8_t modeADE7753;
+
 extern char ssid[33];
 extern char password[65];
 
-typedef struct {
-    float voltage;
-    float current;
-} SensorData;
-
-extern SensorData data2Send[DATA_SIZE];
+extern float data2Send[DATA_SIZE];
 extern uint16_t dataCount;
 extern bool flagSend;
 
@@ -72,4 +69,6 @@ void initialise_wifi(void);
 void socketControl(bool _status);
 bool read_from_nvs(const char *key, char *value, size_t length);
 void save_to_nvs(const char *key, const char *value);
+void clear_wifi_from_nvs();
+void wifi_init_sta(const char *ssid, const char *password);
 #endif

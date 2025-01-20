@@ -56,6 +56,7 @@ $<TARGET_FILE:__idf_wear_levelling>
 $<TARGET_FILE:__idf_sdmmc>
 $<TARGET_FILE:__idf_fatfs>
 $<TARGET_FILE:__idf_json>
+$<TARGET_FILE:__idf_led_strip>
 $<TARGET_FILE:__idf_mqtt>
 $<TARGET_FILE:__idf_nvs_sec_provider>
 $<TARGET_FILE:__idf_perfmon>

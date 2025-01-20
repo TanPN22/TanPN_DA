@@ -575,6 +575,13 @@ D:/DH/Do an/DA2/SmartPlug_V0/build/esp-idf/json/CMakeFiles/list_install_componen
 D:/DH/Do an/DA2/SmartPlug_V0/build/esp-idf/json/CMakeFiles/install.dir
 D:/DH/Do an/DA2/SmartPlug_V0/build/esp-idf/json/CMakeFiles/install/local.dir
 D:/DH/Do an/DA2/SmartPlug_V0/build/esp-idf/json/CMakeFiles/install/strip.dir
+D:/DH/Do an/DA2/SmartPlug_V0/build/esp-idf/led_strip/CMakeFiles/__idf_led_strip.dir
+D:/DH/Do an/DA2/SmartPlug_V0/build/esp-idf/led_strip/CMakeFiles/edit_cache.dir
+D:/DH/Do an/DA2/SmartPlug_V0/build/esp-idf/led_strip/CMakeFiles/rebuild_cache.dir
+D:/DH/Do an/DA2/SmartPlug_V0/build/esp-idf/led_strip/CMakeFiles/list_install_components.dir
+D:/DH/Do an/DA2/SmartPlug_V0/build/esp-idf/led_strip/CMakeFiles/install.dir
+D:/DH/Do an/DA2/SmartPlug_V0/build/esp-idf/led_strip/CMakeFiles/install/local.dir
+D:/DH/Do an/DA2/SmartPlug_V0/build/esp-idf/led_strip/CMakeFiles/install/strip.dir
 D:/DH/Do an/DA2/SmartPlug_V0/build/esp-idf/mqtt/CMakeFiles/__idf_mqtt.dir
 D:/DH/Do an/DA2/SmartPlug_V0/build/esp-idf/mqtt/CMakeFiles/edit_cache.dir
 D:/DH/Do an/DA2/SmartPlug_V0/build/esp-idf/mqtt/CMakeFiles/rebuild_cache.dir

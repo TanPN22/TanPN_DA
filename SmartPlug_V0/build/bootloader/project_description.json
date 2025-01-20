@@ -918,6 +918,18 @@
             "managed_priv_reqs": [],
             "include_dirs": [ "cJSON" ]
         },
+        "led_strip": {
+            "alias": "idf::led_strip",
+            "target": "___idf_led_strip",
+            "prefix": "idf",
+            "dir": "D:/DH/Lumi/ESPRESSIF/Espressif/v5.2.1/esp-idf/components/led_strip",
+            "lib": "__idf_led_strip",
+            "reqs": [],
+            "priv_reqs": [ "driver" ],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "include_dirs": [ "include" ]
+        },
         "linux": {
             "alias": "idf::linux",
             "target": "___idf_linux",
@@ -928,7 +940,7 @@
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "include_dirs": [ "cJSON" ]
+            "include_dirs": [ "include" ]
         },
         "log": {
             "alias": "idf::log",

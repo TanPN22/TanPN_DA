@@ -27,13 +27,10 @@ void send_mqtt_set_state(esp_mqtt_client_handle_t client, int request_id, bool s
 // Create and add data to json field
 void send_telemetry_data() {
     // Create JSON
-    cJSON *root = cJSON_CreateObject();
-
-    // Create random data
-    bool socket_status = rand() % 2;                                  
+    cJSON *root = cJSON_CreateObject();                              
 
     // Add the field to json
-    cJSON_AddBoolToObject(root, "Socket_status", socket_status);
+    cJSON_AddBoolToObject(root, "Socket_status", socketStatus);
     cJSON_AddNumberToObject(root, "Voltage", VRMS);
     cJSON_AddNumberToObject(root, "Current", IRMS);
     cJSON_AddNumberToObject(root, "Power", VRMS*IRMS);
@@ -52,16 +49,34 @@ void send_telemetry_data() {
             //  voltage, current, power);
 }
 
+// Create and add data to json field
+void sendData_Key(const char * const name,  const double number) {
+    // Create JSON
+    cJSON *root = cJSON_CreateObject();                              
+
+    // Add the field to json
+    cJSON_AddBoolToObject(root, name, number);
+
+    // Convert json data to string
+    char *json_string = cJSON_Print(root);
+
+    // Send data to ThingsBoard passing over MQTT
+    esp_mqtt_client_publish(mqtt_client, "v1/devices/me/telemetry", json_string, 0, 1, 0);
+
+    // free the memory
+    cJSON_Delete(root);
+    free(json_string);
+}
+
 void send_sensor_data_via_mqtt(void) {
     cJSON *root = cJSON_CreateObject();
     cJSON *data_array = cJSON_CreateArray();
 
     // Duyệt qua mảng data2Send và thêm từng phần tử vào JSON array
     for (int i = 0; i < DATA_SIZE; i++) {
-        cJSON *data_object = cJSON_CreateObject();
-        cJSON_AddNumberToObject(data_object, "voltage", data2Send[i].voltage);
-        cJSON_AddNumberToObject(data_object, "current", data2Send[i].current);
-        cJSON_AddItemToArray(data_array, data_object);
+        // cJSON *data_object = cJSON_CreateObject();
+        // cJSON_AddNumberToObject(data_object, "data", data2Send[i])
+        cJSON_AddItemToArray(data_array, cJSON_CreateNumber(data2Send[i]));
     }
 
     cJSON_AddItemToObject(root, "data", data_array);
@@ -88,7 +103,7 @@ void send_timer_json(int timerCount) {
 
     char *json_string = cJSON_PrintUnformatted(root);
 
-    int msg_id = esp_mqtt_client_publish(mqtt_client, "v1/devices/me/telemetry", json_string, 0, 1, 0);
+    esp_mqtt_client_publish(mqtt_client, "v1/devices/me/telemetry", json_string, 0, 1, 0);
 
     cJSON_Delete(root);
     free(json_string);
@@ -101,7 +116,7 @@ void send_alarm_json() {
 
     char *json_string = cJSON_PrintUnformatted(root);
 
-    int msg_id = esp_mqtt_client_publish(mqtt_client, "v1/devices/me/telemetry", json_string, 0, 1, 0);
+    esp_mqtt_client_publish(mqtt_client, "v1/devices/me/telemetry", json_string, 0, 1, 0);
 
     cJSON_Delete(root);
     free(json_string);
@@ -214,6 +229,19 @@ void process_mqtt_data(esp_mqtt_client_handle_t client, const char *topic, int t
         }else {
             timerCount -= 30;
         }
+    }
+
+    if (strcmp(method->valuestring, "RESETWIFI") == 0) {
+        clear_wifi_from_nvs();
+
+        esp_restart();
+    }
+
+    if (strcmp(method->valuestring, "setMode") == 0) {
+        //Get param info
+        cJSON *params = cJSON_GetObjectItem(json, "params");
+        modeADE7753 = (uint8_t)params->valueint;
+        ESP_LOGI(TAG, "ADE7753 mode: %d", modeADE7753);
     }
 
     // free memory

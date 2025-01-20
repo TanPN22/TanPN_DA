@@ -1,7 +1,9 @@
 #include "app_main.h"
 #include "esp_log.h"
-
+#include "math.h"
 static const char *TAG = "Socket";
+
+bool checkZeroCross(void);
 
 //ISR for ADE7753
 static void IRAM_ATTR gpio_isr_handler(void* arg) {
@@ -102,9 +104,37 @@ void save_socket_status(bool status) {
 }
 
 void socketControl(bool _status)
-{
-    socketStatus = _status;
+{   
+    if (checkZeroCross())
+    {
+        socketStatus = _status;
+        modeADE7753 = 0;
+    }
+
     save_socket_status(_status);
     gpio_set_level(PIN_RELAY, _status);
     gpio_set_level(PIN_LED_G, _status);
+}
+
+bool checkZeroCross(void)
+{
+    ADE7753_reset();
+    ADE7753_setCh1Gain(ADE7753_GAIN_4);
+    ADE7753_setCh2Gain(ADE7753_GAIN_2);  
+    ADE7753_setCh1FullScale(ADE7753_FS_0_5V);
+    ADE7753_setInterrupt(ADE7753_WSMP);
+    ADE7753_setWaveSelect(ADE7753_WAV_CH2); // Set channel 2
+    ADE7753_setDataRate(ADE7753_DR_1_1024); 
+
+    while (1)
+    {
+        esp_rom_delay_us(10);
+        if (ADE7753_status() && ADE7753_WSMP) {
+            VRMS = ADE7753_readWaveForm()/ 34.622;
+            if (abs(VRMS) < 20){
+                return true;
+            }
+        }
+    }
+    
 }
