@@ -29,3 +29,5 @@ Bước 4: Nhấn Confirm
 - Bảo mật: Sử dụng giao thức MQTTS cần có CA mới có thể giải mã bản tin.
 
 - Nhận biết dòng rò. Nếu có dòng rò sẽ tự ngắt.
+
+- Zero crossing: Khi điều khiển đóng cắt, sẽ tự cắt tại điểm điện áp bằng 0
